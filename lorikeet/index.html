@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>lorikeet</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./style/index.css"></link>
+    <script src="./script/index.js"></script>
+  </head>
+  <body>
+    <template id="item-template">
+      <div class="item">
+        <img class="icon">
+        <div class="filename"></div>
+      </div>
+    </template>
+    <div id="toolbar">
+      <div id="current-folder">
+        <script>
+          document.write(fileSystem.getUsersHomeFolder())  
+        </script>
+      </div>
+    </div>
+    <div id="main-area"></div>
+  </body>
+</html>
