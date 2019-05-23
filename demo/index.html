@@ -1,0 +1,36 @@
+<html>
+  <head>
+    <title>demo</title>
+    <meta charset="utf-8">
+    <style>
+      h1 {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>hello world</h1>
+    <ul id="file"></ul>
+    <script>
+      const fs = require('fs')
+      const osenv = require('osenv')
+
+      function main () {
+        fs.readdir(osenv.home(), (err, files) => {
+          if (err) {
+            alert(err)
+          } else {
+            let ul = document.getElementById('file')
+            let str = ''
+            files.forEach(item => {
+              str += `<li>${item}</li>`
+            })
+            ul.innerHTML = str
+          }
+        })
+      }
+
+      main()
+    </script>
+  </body>
+</html>

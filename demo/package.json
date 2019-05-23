@@ -1,0 +1,8 @@
+{
+  "name": "electron-demo",
+  "main": "main.js",
+  "version": "1.0.0",
+  "dependencies": {
+    "osenv": "^0.1.5"
+  }
+}

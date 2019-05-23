@@ -21,5 +21,5 @@ app.on('ready', () => {
     }
   })
   mainWindow.loadURL(`file://${app.getAppPath()}/index.html`)
-  mainWindow.on('closed', () => { mainWindow = null })
+  mainWindow.on('closed', () => mainWindow = null)
 })

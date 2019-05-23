@@ -26,12 +26,8 @@ function inspectAndDescribeFile (filePath, cb) {
     if (err) {
       cb(err)
     } else {
-      if (stat.isFile()) {
-        result.type = 'file'
-      }
-      if (stat.isDirectory()) {
-        result.type = 'directory'
-      }
+      if (stat.isFile()) result.type = 'file'
+      if (stat.isDirectory()) result.type = 'directory'
       cb(err, result)
     }
   })
