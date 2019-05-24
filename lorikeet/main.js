@@ -16,6 +16,14 @@ let mainWindow = null
 // 应用运行时，加载主窗口，加载 index.html 文件内容，文件关闭时清空主窗口变量
 app.on('ready', () => {
   mainWindow = new BrowserWindow({
+    // x: 100, y: 100,
+    // width: 800, height: 600,
+    // minWidth: 800, minHeight: 600,
+    // maxWidth: 800, maxHeight: 600,
+    fullscreen: true, // 窗口最大化
+    // frame: false, // 无边框
+    // transparent: true, // 透明应用窗口
+    kiosk: true, // kiosk 最大化 F11
     webPreferences: {
       nodeIntegration: true
     }

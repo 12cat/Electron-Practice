@@ -13,7 +13,13 @@
       </div>
     </template>
     <div id="toolbar">
-      <div id="current-folder"></div>
+      <div>
+        <div id="current-folder"></div>
+      </div>
+      <ul class="btn-list">
+        <li><button id="fullscreen" onclick="toggleFullScreen()">Go full screen</button></li>
+        <li><button id="kiosk" onclick="togglerKiosk()">Enter kiosk mode</button></li>
+      </ul>
     </div>
     <div id="main-area"></div>
   </body>

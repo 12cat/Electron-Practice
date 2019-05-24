@@ -12,17 +12,30 @@ body {
   z-index: 2;
 }
 #current-folder {
-  float: left;
   color: white;
   background: #999;
   padding: 5px;
-  min-width: 200px;
+  width: 200px;
   border-radius: 3px;
+}
+.btn-list {
+  margin: 10px 0 0;
+  padding: 0;
+}
+.btn-list li {
+  margin-right: 20px;
+  display: inline-block;
+}
+.btn-list li button {
+  height: 35px;
+  width: 120px;
+  text-align: center;
+  cursor: pointer;
 }
 #main-area {
   clear: both;
   margin: 30px;
-  margin-top: 50px;
+  margin-top: 100px;
   z-index: 1;
 }
 .item {

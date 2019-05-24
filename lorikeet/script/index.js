@@ -2,6 +2,7 @@
 
 const fileSystem = require('./script/fileSystem')
 const userInterface = require('./script/userInterface')
+const remote = require('electron').remote
 
 // main
 function main () {
@@ -17,6 +18,32 @@ function main () {
       if (arr.length >= 3) arr = arr.slice(0, arr.length - 1)
       userInterface.loadDirectory(arr.join('\\'))(window)
     }
+  }
+}
+
+// 控制窗口最大化
+function toggleFullScreen () {
+  const button = document.getElementById('fullscreen')
+  const win = remote.getCurrentWindow()
+  if (win.isFullScreen()) {
+    win.setFullScreen(false)
+    button.innerText = 'Go full screen'
+  } else {
+    win.setFullScreen(true)
+    button.innerText = 'Exit full screen'
+  }
+}
+
+// kiosk 最大化 F11
+function togglerKiosk () {
+  const button = document.getElementById('kiosk')
+  const win = remote.getCurrentWindow()
+  if (win.isKiosk()) {
+    win.setKiosk(false)
+    button.innerText = 'Enter kiosk mode'
+  } else {
+    win.setKiosk(true)
+    button.innerText = 'Exit kiosk mode'
   }
 }
 
