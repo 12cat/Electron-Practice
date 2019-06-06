@@ -1,10 +1,8 @@
-const electron = require('electron')
-const BrowserWindow = electron.BrowserWindow
-const app = electron.app
+const {app, BrowserWindow } = require('electron')
 
 let mainWindow = null
 
-app.on('ready', () => {
+app.on('ready', _ => {
   mainWindow = new BrowserWindow({
     webPreferences: {
       nodeIntegration: true

@@ -4,6 +4,8 @@ const fileSystem = require('./script/fileSystem')
 const userInterface = require('./script/userInterface')
 const remote = require('electron').remote
 
+// const notifier = require('electron-notifications')
+
 // main
 function main () {
   userInterface.bindDocument(window)
@@ -19,6 +21,18 @@ function main () {
       userInterface.loadDirectory(arr.join('\\'))(window)
     }
   }
+}
+
+
+function notify () {
+  console.log(1111)
+  let nty = new Notification('标题', {
+    title: 'biaoti',
+    body: 'neirong'
+  })
+  nty.onshow = () => console.log('nty show')
+  nty.onclick = () => console.log('nty click')
+  nty.onclose = () => console.log('nty close')
 }
 
 // 控制窗口最大化

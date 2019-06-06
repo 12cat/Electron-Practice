@@ -9,5 +9,6 @@
   "scripts": {
     "start": "electron .",
     "package": "electron-packager . lorikeet --platform=win32 --arch=x64 --icon=icon.ico --app-version=0.0.1 --electron-version=5.0.1"
-  }
+  },
+  "devDependencies": {}
 }
