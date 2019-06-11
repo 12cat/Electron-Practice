@@ -7,6 +7,7 @@ const globalShortcut  = electron.globalShortcut
 const Menu = electron.Menu
 const Tary = electron.Tray
 const BrowserWindow = electron.BrowserWindow
+const autoUpdater = require("electron-updater").autoUpdater
 
 // 应用主窗口
 let mainWindow = null
@@ -42,7 +43,7 @@ app.on('ready', () => {
   mainWindow.loadURL(`file://${app.getAppPath()}/index.html`)
 
   // 创建托盘图标，设置托盘title
-  appIcon = new Tary('icon1.png')
+  appIcon = new Tary(__dirname + '/icon1.png')
   appIcon.setToolTip('12cat')
 
   // 托盘图片右键菜单
@@ -63,9 +64,28 @@ app.on('ready', () => {
   // 托盘图标闪烁
   let count = 0;
   setInterval (() => {
-    if (count++ % 2 == 0) appIcon.setImage('icon1.png')
-    else appIcon.setImage('icon2.png')
+    if (count++ % 2 == 0) appIcon.setImage(__dirname + '/icon1.png')
+    else appIcon.setImage(__dirname + '/icon2.png')
   }, 400)
+
+  autoUpdater.setFeedURL('http://localhost:8899/')
+  autoUpdater.checkForUpdates()
+  autoUpdater.on('error', e => {
+    console.log('更新发生错误：' + JSON.stringify(e))
+  })
+  autoUpdater.on('checking-for-update', e => {
+    console.log('开始检查更新：' + JSON.stringify(e))
+  })
+  autoUpdater.on('update-available', e => {
+    console.log('发现可用更新：' + JSON.stringify(e))
+  })
+  autoUpdater.on('update-not-available', e => {
+    console.log('没有可用更新：' + JSON.stringify(e))
+  })
+  autoUpdater.on('update-downloaded', () => {
+    console.log('更新下载完成：' + JSON.stringify(e))
+    autoUpdater.quitAndInstall()
+  })
 
   // 关闭系统，最小化到托盘
   mainWindow.on('close', event => {

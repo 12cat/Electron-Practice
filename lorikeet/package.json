@@ -4,11 +4,39 @@
   "version": "1.0.0",
   "dependencies": {
     "async": "^3.0.0",
+    "electron-updater": "^4.0.6",
     "osenv": "^0.1.5"
+  },
+  "devDependencies": {
+    "electron": "^5.0.3",
+    "electron-builder": "^20.43.0"
   },
   "scripts": {
     "start": "electron .",
+    "dist": "electron-builder",
     "package": "electron-packager . lorikeet --platform=win32 --arch=x64 --icon=icon.ico --app-version=0.0.1 --electron-version=5.0.1"
   },
-  "devDependencies": {}
+  "build": {
+    "publish": [
+      {
+        "provider": "generic",
+        "url": "http://localhost:8899/"
+      }
+    ],
+    "directories": {
+      "output": "release",
+      "app": "./"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "zip"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": true
+    }
+  }
 }
