@@ -2,26 +2,20 @@
 
 // 通过 npm 加载 electron
 const electron = require('electron')
-const app = electron.app
-const globalShortcut  = electron.globalShortcut
-const Menu = electron.Menu
-const Tary = electron.Tray
-const BrowserWindow = electron.BrowserWindow
+const {app, Menu, Tray, BrowserWindow, globalShortcut} = electron
 const autoUpdater = require("electron-updater").autoUpdater
 
 // 应用主窗口
 let mainWindow = null
 let appIcon = null
 
+// 禁止应用多开
+!app.requestSingleInstanceLock() && app.quit()
+
 // 窗口关闭时，关闭应用（mac、os系统不会关闭应用）
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
-
-// 
-function displayNote (note) {
-  mainWindow.webContents.send('displayNote', note)
-}
 
 // 应用运行时，加载主窗口，加载 index.html 文件内容，文件关闭时清空主窗口变量
 app.on('ready', () => {
@@ -43,7 +37,7 @@ app.on('ready', () => {
   mainWindow.loadURL(`file://${app.getAppPath()}/index.html`)
 
   // 创建托盘图标，设置托盘title
-  appIcon = new Tary(__dirname + '/icon1.png')
+  appIcon = new Tray(__dirname + '/icon1.png')
   appIcon.setToolTip('12cat')
 
   // 托盘图片右键菜单
@@ -86,6 +80,7 @@ app.on('ready', () => {
     console.log('更新下载完成：' + JSON.stringify(e))
     autoUpdater.quitAndInstall()
   })
+
 
   // 关闭系统，最小化到托盘
   mainWindow.on('close', event => {
